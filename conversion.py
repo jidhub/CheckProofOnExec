@@ -2,7 +2,7 @@ from clk_driver import clk_driver
 from sdram_cntl import *
 
 clk_i = Signal(bool(0))
-rst_i = ResetSignal(0, active=1, async=True)
+rst_i = ResetSignal(0, active=1, isasync=True)
 
 clkDriver_Inst = clk_driver(clk_i)
 sd_intf_Inst = SdramIntf()

@@ -51,13 +51,13 @@ def sdram(clk, sd_intf, show_command=False):
     def main_function():
         if sd_intf.cke == 1:
             if show_command:
-                print " SDRAM : [COMMAND] ", curr_command
+                print(" SDRAM : [COMMAND] ", curr_command)
 
             for bank_state in curr_state:
                 bank_state.next_state(curr_command)
 
             if curr_command == commands.INVALID:
-                print " SDRAM : [ERROR] Invalid command is given"
+                print(" SDRAM : [ERROR] Invalid command is given")
             elif curr_command == commands.LOAD_MODE:
                 load_mode(sd_intf.bs, sd_intf.addr)
             elif curr_command == commands.ACTIVE:
@@ -74,7 +74,7 @@ def sdram(clk, sd_intf, show_command=False):
             rfsh_timer.next = (rfsh_timer + 1)
             if rfsh_timer == 0:
                 if rfsh_count < rfsh_count_c:
-                    print " SDRAM : [ERROR] Refresh requirement is not met"
+                    print(" SDRAM : [ERROR] Refresh requirement is not met")
 
     @always(clk.negedge)
     def read_function():
@@ -92,31 +92,31 @@ def sdram(clk, sd_intf, show_command=False):
             mode = "Single "
         else:
             mode = "Burst  "
-        print "Bank :", bs
-        print "--------------------------"
-        print " Mode   | CAS   |   Burst "
-        print "--------|-------|---------"
-        print " %s| %i     |   %i " % (mode, cas, burst)
-        print "--------------------------"
+        print("Bank :", bs)
+        print("--------------------------")
+        print(" Mode   | CAS   |   Burst ")
+        print("--------|-------|---------")
+        print(" %s| %i     |   %i " % (mode, cas, burst))
+        print("--------------------------")
 
     def activate(bs, addr):
         if curr_state[bs.val].active_row:
-            print " SDRAM : [ERROR] A row is already activated. Bank should be precharged first"
+            print(" SDRAM : [ERROR] A row is already activated. Bank should be precharged first")
             return None
         if curr_state[bs.val].get_state() == states.Uninitialized:
-            print " SDRAM : [ERROR] Bank is not in a good state. Too bad for you"
+            print(" SDRAM : [ERROR] Bank is not in a good state. Too bad for you")
             return None
         curr_state[bs.val].active_row = addr.val
 
     def read(bs, addr):
         if not curr_state[bs.val].active_row:
-            print " SDRAM : [ERROR] A row should be activated before trying to read"
+            print(" SDRAM : [ERROR] A row should be activated before trying to read")
         else:
-            print " SDRAM : [READ]", addr, " Commnad registered "
+            print(" SDRAM : [READ]", addr, " Commnad registered ")
 
     def write(bs, addr):
         if not curr_state[bs.val].active_row:
-            print " SDRAM : [ERROR] A row should be activated before trying to write", addr
+            print(" SDRAM : [ERROR] A row should be activated before trying to write", addr)
 
     def precharge(bs, addr):
         if addr.val[10] == 1:           # Precharge all banks command
@@ -190,7 +190,7 @@ class State:
         self.wait += 1
         if self.state == states.Uninitialized:
             if self.wait >= INIT_CYCLES_C:
-                print " BANK", self.bank_id, "STATE : [CHANGE] Uninitialized -> Initialized @ ", now()
+                print(" BANK", self.bank_id, "STATE : [CHANGE] Uninitialized -> Initialized @ ", now())
                 self.state = states.Initialized
                 self.wait = 0
 
@@ -216,7 +216,7 @@ class State:
                 self.wait = 0
                 if self.active_row:
                     self.data = self.memory[self.active_row * 10000 + self.addr]
-                print " STATE : [READ] Data Ready @ ", now(), " value : ", self.data
+                print(" STATE : [READ] Data Ready @ ", now(), " value : ", self.data)
 
         elif self.state == states.Read_rdy:
                 self.state = states.Idle
@@ -228,7 +228,7 @@ class State:
                 self.state = states.Idle
                 self.wait = 0
                 if self.active_row:
-                    print " DATA : [WRITE] Addr:", self.addr, " Data:", self.data
+                    print(" DATA : [WRITE] Addr:", self.addr, " Data:", self.data)
                     self.memory[self.active_row * 10000 + self.addr] = self.data
 
     def get_state(self):
