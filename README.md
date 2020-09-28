@@ -102,3 +102,24 @@ The converted output (MySdramCntl.v or MySdramCntl.vhd and pck_myhdl_10.vhd) can
 ### Limitations ###
 
 Sdram can be programmed to used in several different modes. However this controller does not allow to set up the sdram user mode. Instead it uses a fixed mode where burst length is one.
+
+ROADMAP:
+- [x] bought the Xula2 with VGA output
+- [x] Fork from github for SDRAM access, then manually merge with another github project for VGA
+- [x] changed the name
+- [ ] test it on Xula2
+- [ ] test the VGA VHDL code http://www.pyroelectro.com/tutorials/fpga_vga_resistor_dac/ on Xula2 
+- [ ] modify the VGA myhdl part so that its VHDL output is as previous point
+- [ ] fetch for a rbtree or similar that can be parcouru while being modified.
+- [ ] start programming the output so that it shows characters in the rbtree
+- [ ] modify the core to read from primary partition of the SDCARD
+- [ ] start coding the ROM in the SDCARD
+- [ ] find way to connect a keyboard or a touchscreen or transparent keyboard over a screen
+- [ ] make myhdl code for the touchscreen/keyboard
+- [ ] write proof for program that measures time between two keypresses, and escape at ESC key.
+- [ ] write an editor and its proof
+
+TODO:
+- [ ] Find a better name. CheckProofOnLoad would be more accurate, if load is understood for executables only.
+- [ ] reproducibility: see if this code can be run on amazon fpga, as is, or at least with as few changes as possible
+- [ ] network: add a serializer/deserializer (serdes) myhdl library, may it do hdmi or not, may it standard or not, then add ability to read code and proof from a serdes channel.
