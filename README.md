@@ -6,7 +6,8 @@ This repository is created to host the work about a microprocessor for FPGA boar
 
 It is based on following repositories
 
-* https://github.com/develone/SDRAM_Controller for access to its 32MBytes of memory, resulting from (develone's work)[http://design4hardware.blogspot.com/2015/08/detailed-steps-for-hardware.html] for Google Summer of Code 2015.
+* https://github.com/develone/SDRAM_Controller for access to its 32MBytes of memory, resulting from [
+udara28 Udara De Silva's work](http://design4hardware.blogspot.com/2015/08/detailed-steps-for-hardware.html) for Google Summer of Code 2015.
 * https://github.com/on1arf/myhdl-vga_bounceball/blob/master/vga640x480.py for its VGA code in myhdl.
 
 ## Prerequistes ##
@@ -103,7 +104,8 @@ The converted output (MySdramCntl.v or MySdramCntl.vhd and pck_myhdl_10.vhd) can
 
 Sdram can be programmed to used in several different modes. However this controller does not allow to set up the sdram user mode. Instead it uses a fixed mode where burst length is one.
 
-ROADMAP:
+## ROADMAP ## 
+
 - [x] bought the Xula2 with VGA output
 - [x] Fork from github for SDRAM access, then manually merge with another github project for VGA
 - [x] changed the name
@@ -119,7 +121,7 @@ ROADMAP:
 - [ ] write proof for program that measures time between two keypresses, and escape at ESC key.
 - [ ] write an editor and its proof
 
-TODO:
+## TODO ##
 - [ ] Find a better name. CheckProofOnLoad would be more accurate, if load is understood for executables only.
 - [ ] reproducibility: see if this code can be run on amazon fpga, as is, or at least with as few changes as possible
 - [ ] network: add a serializer/deserializer (serdes) myhdl library, may it do hdmi or not, may it standard or not, then add ability to read code and proof from a serdes channel.
