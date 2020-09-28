@@ -1,7 +1,13 @@
-# SDRAM_Controller
+# CheckProofOnExec
 
-This repository is created to host the work I done for Google Summer of Code 2015. It contains a Sdram controller and a model that can be used to test the controller.
-All the designs are written in MyHDL which is a HDL written in Python. Details and manual to use MyHDL can be found on http://myhdl.org/
+This repository is created to host the work about a microprocessor for FPGA board Xula2-LX25 that only can load code if accompanied by a proof that will be machine-checked in place. All the designs are written in MyHDL which is a HDL written in Python. Details and manual to use MyHDL can be found on http://myhdl.org/
+
+## 
+
+It is based on following repositories
+
+* https://github.com/develone/SDRAM_Controller for access to its 32MBytes of memory, resulting from (develone's work)[http://design4hardware.blogspot.com/2015/08/detailed-steps-for-hardware.html] for Google Summer of Code 2015.
+* https://github.com/on1arf/myhdl-vga_bounceball/blob/master/vga640x480.py for its VGA code in myhdl.
 
 ## Prerequistes ##
 
